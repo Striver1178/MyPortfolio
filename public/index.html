@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aman Singh - Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-mode">
+  <!-- Particle background -->
+<div id="tsparticles"></div>
+
+
+
+  <div class="background-decor"></div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Aman Singh</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+
+  <header class="text-center py-5 position-relative" data-aos="fade-down">
+    <div class="decorative-circle"></div>
+    <h1 class="display-4">Aman Singh</h1>
+    <p class="lead">BTech Student | Java & Web Developer</p>
+  </header>
+
+  <section id="about" class="container py-5" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>Hello! I’m Aman Singh, a final-year B.Tech student with a passion for building impactful and user-friendly applications. I specialize in Java programming and full-stack web development, where I enjoy transforming ideas into interactive digital solutions.
+
+      Over the past few years, I’ve worked on projects ranging from AI-based applications to responsive web apps with modern UI/UX designs. My skills include:
+      
+      Programming: Java, JavaScript
+      
+      Web Development: HTML, CSS, React, Node.js, Express
+      
+      Databases: MongoDB, MySQL
+      
+      Tools & Platforms: GitHub, Vercel, Render</p>
+  </section>
+
+  <section id="projects" class="container py-5 bg-white rounded shadow-sm" data-aos="fade-right">
+    <h2 class="mb-4">Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <a href="https://ai-emotion-detector.vercel.app/" target="_blank">
+            <img src="emotion.png" height="200" width="350" title="Go Live"></img>
+            </a>
+            <h5 class="card-title">AI Emotion Detector</h5>
+            <p class="card-text">Engineered a web-based application capable of real-time facial emotion recognition from a live webcam feed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <a href="https://campus-connect-m6li.vercel.app/" target="_blank">
+            <img src="campus.png" height="200" width="350" title="Go Live"></img>
+            </a>
+            <h5 class="card-title">Campus Connect</h5>
+            <p class="card-text">CampusConnect is a modern web platform designed to streamline how college students explore and join campus
+              clubs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <a href="https://youtu.be/5D4xDa3DLQc" target="_blank">
+            <img src="fatigue.png" height="200" width="350" title="Go Live"></img>
+            </a>
+            <h5 class="card-title">Real-time Fatigue Detection System</h5>
+            <p class="card-text">Developed a robust, real-time computer vision application designed to detect early signs of fatigue in individuals
+              (e.g., drivers, heavy machinery operators) by analyzing facial landmarks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container py-5" data-aos="fade-up">
+    <h2 class="text-gradient">Get In Touch</h2>
+    <div class="row mt-4">
+      <div class="col-lg-6">
+        <div class="contact-info-card p-4 rounded">
+          <h4><i class="bi bi-envelope me-2"></i> Email</h4>
+          <p>amanmay6@gmail.com</p>
+          
+          <h4 class="mt-4"><i class="bi bi-linkedin me-2"></i> LinkedIn</h4>
+          <a href="https://linkedin.com/in/aman-singh-021845259" target="_blank">linkedin.com/in/aman-singh</a>
+          
+          <h4 class="mt-4"><i class="bi bi-github me-2"></i> GitHub</h4>
+          <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="contact-form-card p-4 rounded">
+          <form id="contactForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-glow">
+              <span class="submit-text">Send Message</span>
+              <span class="spinner-border spinner-border-sm d-none" id="spinner"></span>
+            </button>
+            <div id="formResult" class="mt-3"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center py-3 bg-dark text-light mt-5">
+    <p>© 2025 Your Name</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+<div class="bubble" style="left: 5%; animation-delay: 0s;"></div>
+<div class="bubble" style="left: 15%; animation-delay: 1s;"></div>
+<div class="bubble" style="left: 25%; animation-delay: 2s;"></div>
+<div class="bubble" style="left: 35%; animation-delay: 3s;"></div>
+<div class="bubble" style="left: 45%; animation-delay: 4s;"></div>
+<div class="bubble" style="left: 55%; animation-delay: 5s;"></div>
+<div class="bubble" style="left: 65%; animation-delay: 6s;"></div>
+<div class="bubble" style="left: 75%; animation-delay: 7s;"></div>
+<div class="bubble" style="left: 85%; animation-delay: 8s;"></div>
+<div class="bubble" style="left: 95%; animation-delay: 9s;"></div>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+  tsParticles.load("tsparticles", {
+    fullScreen: { enable: false },
+    background: { color: "#0d0d0d" },
+    particles: {
+      number: { value: 80 },
+      color: { value: "#ffffff" },
+      shape: { type: "circle" },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      links: {
+        enable: true,
+        distance: 150,
+        color: "#ffffff",
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        outMode: "bounce"
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "repulse" },
+        onClick: { enable: true, mode: "push" }
+      },
+      modes: {
+        repulse: { distance: 100 },
+        push: { quantity: 4 }
+      }
+    },
+    retina_detect: true
+  });
+  </script>
+  
+<!-- Firebase App -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<!-- Firestore -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="firebase.js"></script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
