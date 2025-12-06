@@ -58,5 +58,5 @@ This portfolio highlights my major work and represents my personality as a devel
 
 ---
 
-## 📂 Folder Structure
+
 
