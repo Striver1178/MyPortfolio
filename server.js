@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 const { neon } = require('@neondatabase/serverless');
 
 const app = express();
@@ -11,7 +12,9 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public'));
+
+// Serve static files using __dirname so it works on Vercel too
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rate limiter — max 10 contact submissions per 15 minutes per IP
 const contactLimiter = rateLimit({
@@ -20,21 +23,25 @@ const contactLimiter = rateLimit({
   message: { error: 'Too many requests, please try again later.' }
 });
 
-// Neon DB connection
-const sql = neon(process.env.DATABASE_URL);
+// Neon DB connection (lazy — only used when a request hits /api/contact)
+let sql;
+function getDB() {
+  if (!sql) sql = neon(process.env.DATABASE_URL);
+  return sql;
+}
 
-// Initialize the messages table if it doesn't exist
+// Ensure messages table exists
 async function initDB() {
-  await sql`
+  const db = getDB();
+  await db`
     CREATE TABLE IF NOT EXISTS messages (
-      id        SERIAL PRIMARY KEY,
-      name      TEXT        NOT NULL,
-      email     TEXT        NOT NULL,
-      message   TEXT        NOT NULL,
+      id         SERIAL PRIMARY KEY,
+      name       TEXT        NOT NULL,
+      email      TEXT        NOT NULL,
+      message    TEXT        NOT NULL,
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
   `;
-  console.log('✅ Database ready');
 }
 
 // POST /api/contact — save a contact form submission
@@ -52,7 +59,9 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 
   try {
-    await sql`
+    const db = getDB();
+    await initDB();
+    await db`
       INSERT INTO messages (name, email, message)
       VALUES (${name.trim()}, ${email.trim()}, ${message.trim()})
     `;
@@ -63,14 +72,16 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
-// Start server
-initDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running at http://localhost:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('Failed to initialize database:', err);
-    process.exit(1);
+// Fallback — serve index.html for any unmatched route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Only listen when running locally (not on Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
   });
+}
+
+module.exports = app;
