@@ -65,5 +65,8 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# macOS system files
+.DS_Store
+
 # dataconnect generated files
 .dataconnect

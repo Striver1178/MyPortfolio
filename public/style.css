@@ -130,3 +130,74 @@ body {
   height: 100%;
   background-color: #0d0d0d; /* Optional dark background */
 }
+
+/* ── Projects horizontal scroller ── */
+.projects-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projects-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 4px 16px;
+  /* hide scrollbar */
+  scrollbar-width: none;
+}
+.projects-track::-webkit-scrollbar {
+  display: none;
+}
+
+.project-card-item {
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+}
+
+/* Arrow buttons */
+.scroll-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 180, 255, 0.6);
+  background: rgba(0, 123, 255, 0.15);
+  color: #00f0ff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, background 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+
+.scroll-arrow:hover {
+  background: rgba(0, 123, 255, 0.4);
+  transform: scale(1.1);
+}
+
+/* Left arrow starts hidden (nothing to scroll back to) */
+.scroll-arrow-left {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Bounce animation on the right arrow to hint scrollability */
+.scroll-arrow-right {
+  animation: arrow-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+
+.scroll-arrow-right:hover {
+  animation: none;
+  transform: scale(1.1);
+}

@@ -35,13 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
 
       try {
-        // Save message to Firestore
-        await db.collection("messages").add({
-          name: document.getElementById('name').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          message: document.getElementById('message').value.trim(),
-          date: new Date()
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            message: document.getElementById('message').value.trim()
+          })
         });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Something went wrong.');
+        }
 
         resultDiv.innerHTML = `
           <div class="alert alert-success">

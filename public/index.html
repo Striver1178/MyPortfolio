@@ -56,42 +56,69 @@
 
   <section id="projects" class="container py-5 bg-white rounded shadow-sm" data-aos="fade-right">
     <h2 class="mb-4">Projects</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <a href="https://ai-emotion-detector.vercel.app/" target="_blank">
-            <img src="emotion.png" height="200" width="350" title="Go Live"></img>
-            </a>
-            <h5 class="card-title">AI Emotion Detector</h5>
-            <p class="card-text">Engineered a web-based application capable of real-time facial emotion recognition from a live webcam feed.</p>
+
+    <!-- Scroll wrapper -->
+    <div class="projects-scroll-wrapper">
+      <!-- Left arrow -->
+      <button class="scroll-arrow scroll-arrow-left" id="scrollLeft" aria-label="Scroll left">
+        &#8592;
+      </button>
+
+      <!-- Scrollable track -->
+      <div class="projects-track" id="projectsTrack">
+        <div class="project-card-item">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <a href="https://ai-emotion-detector.vercel.app/" target="_blank">
+                <img src="emotion.png" height="200" width="350" title="Go Live" alt="AI Emotion Detector">
+              </a>
+              <h5 class="card-title mt-3">AI Emotion Detector</h5>
+              <p class="card-text">Engineered a web-based application capable of real-time facial emotion recognition from a live webcam feed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card-item">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <a href="https://campus-connect-m6li.vercel.app/" target="_blank">
+                <img src="campus.png" height="200" width="350" title="Go Live" alt="Campus Connect">
+              </a>
+              <h5 class="card-title mt-3">Campus Connect</h5>
+              <p class="card-text">CampusConnect is a modern web platform designed to streamline how college students explore and join campus clubs.</p>
+            </div>
+          </div>
+        </div>
+  <div class="project-card-item">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <a href="https://taskmanager-production-e1dd.up.railway.app/login" target="_blank">
+                <img src="Task.png" height="200" width="350" title="Go Live" alt="TeamFlow-Team Task Manager">
+              </a>
+              <h5 class="card-title mt-3">TeamFlow-Team Task Manager</h5>
+              <p class="card-text">A full-stack team task management platform with role-based access control, real-time dashboards, and a sleek dark UI.
+
+</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-card-item">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <a href="https://youtu.be/5D4xDa3DLQc" target="_blank">
+                <img src="fatigue.png" height="200" width="350" title="Go Live" alt="Fatigue Detection">
+              </a>
+              <h5 class="card-title mt-3">Real-time Fatigue Detection System</h5>
+              <p class="card-text">Developed a robust, real-time computer vision application designed to detect early signs of fatigue in individuals (e.g., drivers, heavy machinery operators) by analyzing facial landmarks.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <a href="https://campus-connect-m6li.vercel.app/" target="_blank">
-            <img src="campus.png" height="200" width="350" title="Go Live"></img>
-            </a>
-            <h5 class="card-title">Campus Connect</h5>
-            <p class="card-text">CampusConnect is a modern web platform designed to streamline how college students explore and join campus
-              clubs.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body">
-            <a href="https://youtu.be/5D4xDa3DLQc" target="_blank">
-            <img src="fatigue.png" height="200" width="350" title="Go Live"></img>
-            </a>
-            <h5 class="card-title">Real-time Fatigue Detection System</h5>
-            <p class="card-text">Developed a robust, real-time computer vision application designed to detect early signs of fatigue in individuals
-              (e.g., drivers, heavy machinery operators) by analyzing facial landmarks.</p>
-          </div>
-        </div>
-      </div>
+
+      <!-- Right arrow -->
+      <button class="scroll-arrow scroll-arrow-right" id="scrollRight" aria-label="Scroll right">
+        &#8594;
+      </button>
     </div>
   </section>
 
@@ -107,7 +134,7 @@
           <a href="https://linkedin.com/in/aman-singh-021845259" target="_blank">linkedin.com/in/aman-singh</a>
           
           <h4 class="mt-4"><i class="bi bi-github me-2"></i> GitHub</h4>
-          <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+          <a href="https://github.com/Striver1178" target="_blank">https://github.com/Striver1178</a>
         </div>
       </div>
       <div class="col-lg-6 mt-4 mt-lg-0">
@@ -192,14 +219,39 @@
   });
   </script>
   
-<!-- Firebase App -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<!-- Firebase removed — contact form now uses Neon (Postgres) backend -->
 
-<!-- Firestore -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script>
+  // Projects horizontal scroll arrows
+  const track = document.getElementById('projectsTrack');
+  const btnLeft = document.getElementById('scrollLeft');
+  const btnRight = document.getElementById('scrollRight');
+  const SCROLL_AMOUNT = 380;
 
-<script src="firebase.js"></script>
-<script src="script.js"></script>
+  function updateArrows() {
+    btnLeft.style.opacity  = track.scrollLeft > 0 ? '1' : '0';
+    btnLeft.style.pointerEvents = track.scrollLeft > 0 ? 'auto' : 'none';
+
+    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    btnRight.style.opacity = atEnd ? '0' : '1';
+    btnRight.style.pointerEvents = atEnd ? 'none' : 'auto';
+  }
+
+  btnRight.addEventListener('click', () => {
+    track.scrollBy({ left: SCROLL_AMOUNT, behavior: 'smooth' });
+  });
+
+  btnLeft.addEventListener('click', () => {
+    track.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' });
+  });
+
+  track.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+
+  // Run once on load
+  updateArrows();
+</script>
+
 
 
 </body>
