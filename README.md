@@ -70,20 +70,11 @@
 
 ---
 
-## 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true"/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME"/>
-</p>
-
----
-
 ## 📫 Connect With Me
 
 - 📧 amanmay6@gmail.com  
-- 💼 LinkedIn: (add your link)  
-- 💻 GitHub: (add your username)  
+- 💼 LinkedIn:  https://linkedin.com/in/aman-singh-021845259
+- 💻 GitHub: https://github.com/Striver1178
 
 ---
 
